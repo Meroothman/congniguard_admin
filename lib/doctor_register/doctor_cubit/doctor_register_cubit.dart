@@ -60,7 +60,7 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
     }
   }
 
-  createDoctor({name, email, phone, password, uId, bio, image}) {
+  createDoctor({name, email, phone, password, uId, bio}) {
     emit(CreateDoctorLoadingState());
 
     DoctorModel model = DoctorModel(
@@ -72,7 +72,7 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
         bio: bioController.text,
         groupsId: [],
         patientsId: [],
-        image: image);
+        image: doctorImage);
     FirebaseFirestore.instance
         .collection('doctors')
         .doc(uId)
