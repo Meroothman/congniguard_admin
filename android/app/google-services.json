@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "914967389919",
+    "project_id": "congniguard",
+    "storage_bucket": "congniguard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914967389919:android:b1347dda6bc5ec4827ab6a",
+        "android_client_info": {
+          "package_name": "com.example.congniguard_admain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA39qydMSdp8tcc12cSqKT8a7zx5ThM7gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914967389919:android:7e75e533523ab5c527ab6a",
+        "android_client_info": {
+          "package_name": "com.example.congniuard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA39qydMSdp8tcc12cSqKT8a7zx5ThM7gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

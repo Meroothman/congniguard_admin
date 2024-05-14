@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB3LtKJp-Aul1xok3ozXGR2ZPBdFihM22s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>914967389919</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.congniguardAdmain.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>congniguard</string>
+	<key>STORAGE_BUCKET</key>
+	<string>congniguard.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:914967389919:ios:d94a04b32162925a27ab6a</string>
+</dict>
+</plist>
