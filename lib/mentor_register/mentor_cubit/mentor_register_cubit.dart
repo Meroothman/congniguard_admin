@@ -42,7 +42,6 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
             phone: phoneController.text,
             uId: value.user!.uid,
           );
-          emit(RegisterMentorSuccesState());
           navigatTo(context, const MentorsView());
           emit(RegisterMentorSuccesState());
         },
@@ -58,15 +57,7 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
     }
   }
 
-  createMentor({
-    name,
-    email,
-    phone,
-    password,
-    uId,
-    age,
-    birthDay,
-  }) {
+  createMentor({name, email, phone, password, uId}) {
     emit(CreateMentorLoadingState());
 
     MentorModel model = MentorModel(
@@ -77,7 +68,7 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
       phone: phone,
       bio: bioController.text,
       groupsId: [],
-      image: doctorImage,
+      image: mentorImage,
     );
     FirebaseFirestore.instance
         .collection('mentors')
@@ -100,7 +91,10 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       mentroImagePick = File(pickedFile.path);
-      debugPrint(mentroImagePick!.path);
+      uploadImage(
+          image: mentroImagePick,
+          imageKind: kMentorImage,
+          folderName: 'mentors');
       emit(MentorProfileImagePickedSuccessState());
     } else {
       debugPrint('No image selected.');
@@ -109,9 +103,7 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
   }
 
   //! function to upload image to firebase storage
-  String doctorImage = '';
   String mentorImage = '';
-  String volunteerImage = '';
   //? note according to the single rsponsipility principle
   void uploadImage({imageKind, image, folderName}) {
     FirebaseStorage.instance

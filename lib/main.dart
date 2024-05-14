@@ -1,6 +1,5 @@
 import 'package:congniguard_admain/bloc_observer.dart';
 import 'package:congniguard_admain/firebase_options.dart';
-import 'package:congniguard_admain/doctor_register/doctor_register.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_cubit.dart';
 import 'package:congniguard_admain/mentor_register/mentor_cubit/mentor_register_cubit.dart';
 import 'package:congniguard_admain/register/register_cubit/volunteer_register_cubit.dart';

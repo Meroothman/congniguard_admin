@@ -79,7 +79,15 @@ class MentorRegister extends StatelessWidget {
                                   child: IconButton(
                                       onPressed: () {
                                         MentorRegisterCubit.get(context)
-                                            .getMentorImage();
+                                            .getMentorImage()
+                                            .then((value) {
+                                          // if (mentorImage != null) {
+                                          //   cubit.uploadImage(
+                                          //       imageKind: kMentorImage,
+                                          //       image: mentorImage,
+                                          //       folderName: 'mentor');
+                                          // }
+                                        });
                                       },
                                       icon: const Icon(IconoirIcons.camera)),
                                 ),
@@ -99,7 +107,12 @@ class MentorRegister extends StatelessWidget {
                           ),
                         ],
                       ),
-
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (state is MentorProfileImagePickedSuccessState &&
+                          state is! MentorUploadImageSuccessState)
+                        const LinearProgressIndicator(),
                       CustomTextFormField(
                         hintText: 'Full Name',
                         controller: cubit.nameController,
@@ -179,12 +192,6 @@ class MentorRegister extends StatelessWidget {
                               password: cubit.passwordController.text,
                               context: context,
                             );
-                            if (mentorImage != null) {
-                              cubit.uploadImage(
-                                  imageKind: kMentorImage,
-                                  image: mentorImage,
-                                  folderName: 'mentor');
-                            }
                           }
                         },
                         width: double.infinity,

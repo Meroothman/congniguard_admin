@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_cubit.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_state.dart';
@@ -76,6 +77,15 @@ class DocotrRegister extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (state is DoctorProfileImagePickedSuccessState &&
+                          state is! DoctorUploadImageSuccessState)
+                        const LinearProgressIndicator(),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       CustomTextFormField(
                         hintText: 'Full Name',
                         controller: cubit.nameController,
@@ -153,12 +163,6 @@ class DocotrRegister extends StatelessWidget {
                               password: cubit.passwordController.text,
                               context: context,
                             );
-                            if (doctorImage != null) {
-                              cubit.uploadImage(
-                                  imageKind: kDoctorImage,
-                                  image: doctorImage,
-                                  folderName: 'doctors');
-                            }
                           }
                         },
                         width: double.infinity,

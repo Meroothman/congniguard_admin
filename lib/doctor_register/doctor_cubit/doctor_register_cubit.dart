@@ -27,7 +27,7 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
   final birthDayController = TextEditingController();
 
   Future<void> registerDoctor(
-      {required String email, required String password, image, context}) async {
+      {required String email, required String password, context}) async {
     emit(RegisterDoctorLoadingState()); //! loading state
     try {
       await FirebaseAuth.instance
@@ -45,10 +45,6 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
             bio: bioController,
             uId: value.user!.uid,
           );
-          emit(RegisterDoctorSuccesState());
-          //  CacheHelper.saveData(key: 'uId', value: value.user!.uid);
-          //   uId = CacheHelper.getData(key: 'uId');
-
           navigatTo(context, const DoctorsView());
           emit(RegisterDoctorSuccesState());
         },
@@ -64,15 +60,7 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
     }
   }
 
-  createDoctor({
-    name,
-    email,
-    phone,
-    password,
-    uId,
-    bio,
-    image,
-  }) {
+  createDoctor({name, email, phone, password, uId, bio, image}) {
     emit(CreateDoctorLoadingState());
 
     DoctorModel model = DoctorModel(
@@ -84,7 +72,7 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
         bio: bioController.text,
         groupsId: [],
         patientsId: [],
-        image: doctorImage);
+        image: image);
     FirebaseFirestore.instance
         .collection('doctors')
         .doc(uId)
@@ -107,8 +95,13 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       doctorImagePick = File(pickedFile.path);
-      debugPrint(doctorImagePick!.path);
+      // debugPrint(doctorImagePick!.path);
       emit(DoctorProfileImagePickedSuccessState());
+      uploadImage(
+        imageKind: kDoctorImage,
+        image: doctorImagePick,
+        folderName: 'doctors',
+      );
     } else {
       debugPrint('No image selected.');
       emit(DoctorProfileImagePickedErrorState('No image selected.'));
@@ -117,8 +110,6 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
 
   //! function to upload image to firebase storage
   String doctorImage = '';
-  String mentorImage = '';
-  String volunteerImage = '';
   //? note according to the single rsponsipility principle
   void uploadImage({imageKind, image, folderName}) {
     FirebaseStorage.instance
