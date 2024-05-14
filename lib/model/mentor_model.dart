@@ -4,7 +4,7 @@ class MentorModel {
   String email;
   String password;
   String phone;
-  List groupsId = [];
+  List? groupsId = [];
 
   String uId;
   String image;
@@ -16,7 +16,7 @@ class MentorModel {
     required this.password,
     required this.phone,
     required this.bio,
-    required this.groupsId,
+    this.groupsId,
     required this.image,
   });
 

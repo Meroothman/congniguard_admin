@@ -4,7 +4,6 @@ class VolunteerModel {
   String email;
   String password;
   String phone;
-
   String uId;
   String image;
 

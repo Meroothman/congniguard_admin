@@ -4,8 +4,8 @@ class DoctorModel {
   String email;
   String password;
   String phone;
-  List groupsId = [];
-  List patientsId = [];
+  List? groupsId = [];
+  List? patientsId = [];
   String uId;
   String image;
 
@@ -16,8 +16,8 @@ class DoctorModel {
     required this.password,
     required this.phone,
     required this.bio,
-    required this.groupsId,
-    required this.patientsId,
+    this.groupsId,
+    this.patientsId,
     required this.image,
   });
 
