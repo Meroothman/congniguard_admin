@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_state.dart';
-import 'package:congniguard_admain/register/model/doctor_model.dart';
+import 'package:congniguard_admain/model/doctor_model.dart';
 import 'package:congniguard_admain/views/doctors_view.dart';
 import 'package:congniguard_admain/views/widgets/function_nav.dart';
 import 'package:firebase_storage/firebase_storage.dart';

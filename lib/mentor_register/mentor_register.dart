@@ -1,7 +1,6 @@
 import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/mentor_register/mentor_cubit/mentor_register_cubit.dart';
 import 'package:congniguard_admain/mentor_register/mentor_cubit/mentor_register_state.dart';
-import 'package:congniguard_admain/register/register_cubit/volunteer_register_cubit.dart';
 import 'package:congniguard_admain/views/widgets/custom_app_button.dart';
 import 'package:congniguard_admain/views/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -79,15 +78,7 @@ class MentorRegister extends StatelessWidget {
                                   child: IconButton(
                                       onPressed: () {
                                         MentorRegisterCubit.get(context)
-                                            .getMentorImage()
-                                            .then((value) {
-                                          // if (mentorImage != null) {
-                                          //   cubit.uploadImage(
-                                          //       imageKind: kMentorImage,
-                                          //       image: mentorImage,
-                                          //       folderName: 'mentor');
-                                          // }
-                                        });
+                                            .getMentorImage();
                                       },
                                       icon: const Icon(IconoirIcons.camera)),
                                 ),
@@ -134,12 +125,13 @@ class MentorRegister extends StatelessWidget {
                       CustomTextFormField(
                         hintText: 'password',
                         controller: cubit.passwordController,
-                        obscureText: RegisterCubit.get(context).isPassword,
+                        obscureText:
+                            MentorRegisterCubit.get(context).isPassword,
                         onPressed: () {
-                          RegisterCubit.get(context)
+                          MentorRegisterCubit.get(context)
                               .changePasswordVisibilityState();
                         },
-                        suffixIcon: RegisterCubit.get(context).suffixIcon,
+                        suffixIcon: MentorRegisterCubit.get(context).suffixIcon,
                       ),
                       const SizedBox(
                         height: 20,
@@ -147,9 +139,10 @@ class MentorRegister extends StatelessWidget {
                       CustomTextFormField(
                         hintText: 'Confirm Password',
                         controller: cubit.rePasswordController,
-                        obscureText: RegisterCubit.get(context).isRePassword,
+                        obscureText:
+                            MentorRegisterCubit.get(context).isRePassword,
                         onPressed: () {
-                          RegisterCubit.get(context)
+                          MentorRegisterCubit.get(context)
                               .changeRePasswordVisibilityState();
                         },
                         validator: (value) {
@@ -158,7 +151,8 @@ class MentorRegister extends StatelessWidget {
                           }
                           return null;
                         },
-                        suffixIcon: RegisterCubit.get(context).reSuffixIcon,
+                        suffixIcon:
+                            MentorRegisterCubit.get(context).reSuffixIcon,
                       ),
 
                       const SizedBox(

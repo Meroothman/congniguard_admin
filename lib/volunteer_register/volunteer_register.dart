@@ -1,23 +1,24 @@
 import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_cubit.dart';
-import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_state.dart';
 import 'package:congniguard_admain/views/widgets/custom_app_button.dart';
 import 'package:congniguard_admain/views/widgets/custom_text_form_field.dart';
+import 'package:congniguard_admain/volunteer_register/volunteer_cubit/volunteer_register_state.dart';
+import 'package:congniguard_admain/volunteer_register/volunteer_cubit/volunteer_register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconoir_ttf/flutter_iconoir_ttf.dart';
 
-class DocotrRegister extends StatelessWidget {
-  const DocotrRegister({super.key});
+class VolunteerRegister extends StatelessWidget {
+  const VolunteerRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
     final key = GlobalKey<FormState>();
-    return BlocConsumer<DoctorRegisterCubit, DoctorRegisterStates>(
+    return BlocConsumer<VolunteerRegisterCubit, VolunteerRegisterStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = DoctorRegisterCubit.get(context);
-        var doctorImage = cubit.doctorImagePick;
+        var cubit = VolunteerRegisterCubit.get(context);
+        var volunteerImage = cubit.volunteerImagePick;
 
         return Scaffold(
           body: SafeArea(
@@ -42,11 +43,12 @@ class DocotrRegister extends StatelessWidget {
                                     Theme.of(context).scaffoldBackgroundColor,
                                 child: CircleAvatar(
                                   radius: 70,
-                                  backgroundImage: doctorImage == null
+                                  backgroundImage: volunteerImage == null
                                       ? const NetworkImage(
                                           'https://as2.ftcdn.net/v2/jpg/03/83/25/83/1000_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg',
                                         )
-                                      : FileImage(doctorImage) as ImageProvider,
+                                      : FileImage(volunteerImage)
+                                          as ImageProvider,
                                 ),
                               ),
                               Padding(
@@ -54,8 +56,8 @@ class DocotrRegister extends StatelessWidget {
                                 child: CircleAvatar(
                                   child: IconButton(
                                       onPressed: () {
-                                        DoctorRegisterCubit.get(context)
-                                            .getDotorImage();
+                                        VolunteerRegisterCubit.get(context)
+                                            .getVolunteerImage();
                                       },
                                       icon: const Icon(IconoirIcons.camera)),
                                 ),
@@ -66,7 +68,7 @@ class DocotrRegister extends StatelessWidget {
                             height: 10,
                           ),
                           const Text(
-                            'Doctors',
+                            'Volunteers',
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.w700,
@@ -78,8 +80,8 @@ class DocotrRegister extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      if (state is DoctorProfileImagePickedSuccessState &&
-                          state is! DoctorUploadImageSuccessState)
+                      if (state is VolunteerProfileImagePickedSuccessState &&
+                          state is! VolunteerUploadImageSuccessState)
                         const LinearProgressIndicator(),
                       const SizedBox(
                         height: 10,
@@ -105,13 +107,11 @@ class DocotrRegister extends StatelessWidget {
                       CustomTextFormField(
                         hintText: 'password',
                         controller: cubit.passwordController,
-                        obscureText:
-                            DoctorRegisterCubit.get(context).isPassword,
+                        obscureText: cubit.isPassword,
                         onPressed: () {
-                          DoctorRegisterCubit.get(context)
-                              .changePasswordVisibilityState();
+                          cubit.changePasswordVisibilityState();
                         },
-                        suffixIcon: DoctorRegisterCubit.get(context).suffixIcon,
+                        suffixIcon: cubit.suffixIcon,
                       ),
                       const SizedBox(
                         height: 20,
@@ -119,11 +119,9 @@ class DocotrRegister extends StatelessWidget {
                       CustomTextFormField(
                         hintText: 'Confirm Password',
                         controller: cubit.rePasswordController,
-                        obscureText:
-                            DoctorRegisterCubit.get(context).isRePassword,
+                        obscureText: cubit.isRePassword,
                         onPressed: () {
-                          DoctorRegisterCubit.get(context)
-                              .changeRePasswordVisibilityState();
+                          cubit.changeRePasswordVisibilityState();
                         },
                         validator: (value) {
                           if (value != cubit.passwordController.text) {
@@ -156,10 +154,10 @@ class DocotrRegister extends StatelessWidget {
                         height: 40,
                       ),
                       CustomAppButton(
-                        text: "Doctor Sign Up",
+                        text: "Volunteer Sign Up",
                         onPressed: () {
                           if (key.currentState!.validate()) {
-                            cubit.registerDoctor(
+                            cubit.registerVolunteer(
                               email: cubit.emailController.text,
                               password: cubit.passwordController.text,
                               context: context,
