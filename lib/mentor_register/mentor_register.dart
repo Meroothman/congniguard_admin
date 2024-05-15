@@ -16,7 +16,7 @@ class MentorRegister extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = GlobalKey<FormState>();
     return BlocProvider(
-      create: (context) => MentorRegisterCubit(),
+      create: (context) => MentorRegisterCubit()..getMentorsData(),
       child: BlocConsumer<MentorRegisterCubit, MentorRegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {

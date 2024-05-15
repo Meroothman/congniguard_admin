@@ -1,5 +1,4 @@
 import 'package:congniguard_admain/constant/const.dart';
-import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_cubit.dart';
 import 'package:congniguard_admain/widgets/custom_app_button.dart';
 import 'package:congniguard_admain/widgets/custom_text_form_field.dart';
 import 'package:congniguard_admain/volunteer_register/volunteer_cubit/volunteer_register_state.dart';
@@ -15,7 +14,7 @@ class VolunteerRegister extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = GlobalKey<FormState>();
     return BlocProvider(
-      create: (context) => VolunteerRegisterCubit(),
+      create: (context) => VolunteerRegisterCubit()..getVolunteerData(),
       child: BlocConsumer<VolunteerRegisterCubit, VolunteerRegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -131,8 +130,7 @@ class VolunteerRegister extends StatelessWidget {
                             }
                             return null;
                           },
-                          suffixIcon:
-                              DoctorRegisterCubit.get(context).reSuffixIcon,
+                          suffixIcon: cubit.reSuffixIcon,
                         ),
                         const SizedBox(
                           height: 20,

@@ -12,7 +12,7 @@ final class RegisterDoctorErrorState extends DoctorRegisterStates {
   RegisterDoctorErrorState(this.error);
 }
 
-//! Create user
+//! Create doctor
 final class CreateDoctorLoadingState extends DoctorRegisterStates {}
 
 final class CreateDoctorSuccessState extends DoctorRegisterStates {}
@@ -21,6 +21,18 @@ final class CreateDoctorErrorState extends DoctorRegisterStates {
   final String error;
 
   CreateDoctorErrorState(this.error);
+}
+
+//! get doctors data
+
+final class GetDoctorLoadingState extends DoctorRegisterStates {}
+
+final class GetDoctorSuccessState extends DoctorRegisterStates {}
+
+final class GetDoctorErrorState extends DoctorRegisterStates {
+  final String error;
+
+  GetDoctorErrorState(this.error);
 }
 
 //! image picker

@@ -4,8 +4,8 @@ class DoctorModel {
   String email;
   String password;
   String phone;
-  List? groupsId = [];
-  List? patientsId = [];
+  List groupsId = [];
+  List patientsId = [];
   String uId;
   String image;
 
@@ -16,8 +16,8 @@ class DoctorModel {
     required this.password,
     required this.phone,
     required this.bio,
-    this.groupsId,
-    this.patientsId,
+    required this.groupsId,
+    required this.patientsId,
     required this.image,
   });
 
@@ -28,7 +28,7 @@ class DoctorModel {
       'email': email,
       'password': password,
       'phone': phone,
-      'age': bio,
+      'bio': bio,
       'groupsId': groupsId,
       'patientsId': patientsId,
       'image': image
@@ -43,8 +43,8 @@ class DoctorModel {
         password: json['password'],
         phone: json['phone'],
         bio: json['bio'],
-        groupsId: json['groupsId'],
-        patientsId: json['patientsId'],
+        groupsId: json['groupsId'] ?? [],
+        patientsId: json['patientsId'] ?? [],
         image: json['image']);
   }
 }

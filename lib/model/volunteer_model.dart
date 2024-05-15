@@ -24,7 +24,7 @@ class VolunteerModel {
       'email': email,
       'password': password,
       'phone': phone,
-      'age': bio,
+      'bio': bio,
       'image': image
     };
   }

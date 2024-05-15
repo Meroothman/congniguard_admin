@@ -134,7 +134,23 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
   //! get doctors data
 
   List<DoctorModel> doctors = [];
-  getUserData() {}
+  getDoctorsData() {
+    doctors = [];
+    emit(GetDoctorLoadingState());
+    FirebaseFirestore.instance.collection('doctors').get().then((value) {
+      for (var element in value.docs) {
+        doctors.add(
+          DoctorModel.fromjson(
+            element.data(),
+          ),
+        );
+      }
+      debugPrint(doctors.toList().toString());
+      emit(GetDoctorSuccessState());
+    }).catchError((e) {
+      emit(GetDoctorErrorState(e.toString()));
+    });
+  }
 
   IconData suffixIcon = IconoirIcons.eyeClosed;
   bool isPassword = true;

@@ -14,7 +14,7 @@ class DocotrRegister extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = GlobalKey<FormState>();
     return BlocProvider(
-      create: (context) => DoctorRegisterCubit(),
+      create: (context) => DoctorRegisterCubit()..getDoctorsData(),
       child: BlocConsumer<DoctorRegisterCubit, DoctorRegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {

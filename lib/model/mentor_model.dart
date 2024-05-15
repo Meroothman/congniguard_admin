@@ -27,7 +27,7 @@ class MentorModel {
       'email': email,
       'password': password,
       'phone': phone,
-      'age': bio,
+      'bio': bio,
       'groupsId': groupsId,
       'image': image
     };
