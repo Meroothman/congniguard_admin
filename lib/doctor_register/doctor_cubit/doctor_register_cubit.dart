@@ -4,7 +4,7 @@ import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/doctor_register/doctor_cubit/doctor_register_state.dart';
 import 'package:congniguard_admain/model/doctor_model.dart';
 import 'package:congniguard_admain/views/doctors_view.dart';
-import 'package:congniguard_admain/views/widgets/function_nav.dart';
+import 'package:congniguard_admain/widgets/function_nav.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_iconoir_ttf/flutter_iconoir_ttf.dart';
 import 'package:image_picker/image_picker.dart';
@@ -128,6 +128,27 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates> {
       },
     ).catchError((e) {
       emit(DoctorUploadImageErrorState());
+    });
+  }
+
+  //! get doctors data
+
+  List<DoctorModel> doctors = [];
+  getDoctorsData() {
+    doctors = [];
+    emit(GetDoctorLoadingState());
+    FirebaseFirestore.instance.collection('doctors').get().then((value) {
+      for (var element in value.docs) {
+        doctors.add(
+          DoctorModel.fromjson(
+            element.data(),
+          ),
+        );
+      }
+      debugPrint(doctors.toList().toString());
+      emit(GetDoctorSuccessState());
+    }).catchError((e) {
+      emit(GetDoctorErrorState(e.toString()));
     });
   }
 

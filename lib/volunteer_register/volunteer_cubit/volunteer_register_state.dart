@@ -23,6 +23,18 @@ final class CreateVolunteerErrorState extends VolunteerRegisterStates {
   CreateVolunteerErrorState(this.error);
 }
 
+//! get doctors data
+
+final class GetVolunteerLoadingState extends VolunteerRegisterStates {}
+
+final class GetVolunteerSuccessState extends VolunteerRegisterStates {}
+
+final class GetVolunteerErrorState extends VolunteerRegisterStates {
+  final String error;
+
+  GetVolunteerErrorState(this.error);
+}
+
 //! image picker
 final class VolunteerProfileImagePickedSuccessState
     extends VolunteerRegisterStates {}

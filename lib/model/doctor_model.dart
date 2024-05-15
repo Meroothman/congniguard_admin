@@ -28,7 +28,7 @@ class DoctorModel {
       'email': email,
       'password': password,
       'phone': phone,
-      'age': bio,
+      'bio': bio,
       'groupsId': groupsId,
       'patientsId': patientsId,
       'image': image
@@ -43,8 +43,8 @@ class DoctorModel {
         password: json['password'],
         phone: json['phone'],
         bio: json['bio'],
-        groupsId: json['groupsId'],
-        patientsId: json['patientsId'],
+        groupsId: json['groupsId'] ?? [],
+        patientsId: json['patientsId'] ?? [],
         image: json['image']);
   }
 }

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/model/volunteer_model.dart';
 import 'package:congniguard_admain/views/volunteer_view.dart';
-import 'package:congniguard_admain/views/widgets/function_nav.dart';
+import 'package:congniguard_admain/widgets/function_nav.dart';
 import 'package:congniguard_admain/volunteer_register/volunteer_cubit/volunteer_register_state.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_iconoir_ttf/flutter_iconoir_ttf.dart';
@@ -134,6 +134,27 @@ class VolunteerRegisterCubit extends Cubit<VolunteerRegisterStates> {
       },
     ).catchError((e) {
       emit(VolunteerUploadImageErrorState());
+    });
+  }
+
+  //! get volunteer data
+
+  List<VolunteerModel> volunteer = [];
+  getVolunteerData() {
+    volunteer = [];
+    emit(GetVolunteerLoadingState());
+    FirebaseFirestore.instance.collection('volunteers').get().then((value) {
+      for (var element in value.docs) {
+        volunteer.add(
+          VolunteerModel.fromjson(
+            element.data(),
+          ),
+        );
+      }
+      debugPrint(volunteer.toList().toString());
+      emit(GetVolunteerSuccessState());
+    }).catchError((e) {
+      emit(GetVolunteerErrorState(e.toString()));
     });
   }
 

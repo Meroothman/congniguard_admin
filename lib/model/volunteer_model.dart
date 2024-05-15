@@ -4,7 +4,6 @@ class VolunteerModel {
   String email;
   String password;
   String phone;
-
   String uId;
   String image;
 
@@ -25,7 +24,7 @@ class VolunteerModel {
       'email': email,
       'password': password,
       'phone': phone,
-      'age': bio,
+      'bio': bio,
       'image': image
     };
   }

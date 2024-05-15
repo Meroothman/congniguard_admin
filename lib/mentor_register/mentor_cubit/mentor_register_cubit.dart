@@ -4,7 +4,7 @@ import 'package:congniguard_admain/constant/const.dart';
 import 'package:congniguard_admain/mentor_register/mentor_cubit/mentor_register_state.dart';
 import 'package:congniguard_admain/model/mentor_model.dart';
 import 'package:congniguard_admain/views/mentors_view.dart';
-import 'package:congniguard_admain/views/widgets/function_nav.dart';
+import 'package:congniguard_admain/widgets/function_nav.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_iconoir_ttf/flutter_iconoir_ttf.dart';
 import 'package:image_picker/image_picker.dart';
@@ -124,6 +124,27 @@ class MentorRegisterCubit extends Cubit<MentorRegisterStates> {
       },
     ).catchError((e) {
       emit(MentorUploadImageErrorState());
+    });
+  }
+
+  //! get mentor data
+
+  List<MentorModel> mentor = [];
+  getMentorsData() {
+    mentor = [];
+    emit(GetMentorLoadingState());
+    FirebaseFirestore.instance.collection('mentors').get().then((value) {
+      for (var element in value.docs) {
+        mentor.add(
+          MentorModel.fromjson(
+            element.data(),
+          ),
+        );
+      }
+      debugPrint(mentor.toList().toString());
+      emit(GetMentorSuccessState());
+    }).catchError((e) {
+      emit(GetMentorErrorState(e.toString()));
     });
   }
 

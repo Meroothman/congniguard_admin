@@ -1,8 +1,8 @@
 import 'package:congniguard_admain/doctor_register/doctor_register.dart';
 import 'package:congniguard_admain/mentor_register/mentor_register.dart';
-import 'package:congniguard_admain/views/widgets/app_images.dart';
-import 'package:congniguard_admain/views/widgets/custom_app_button.dart';
-import 'package:congniguard_admain/views/widgets/function_nav.dart';
+import 'package:congniguard_admain/widgets/app_images.dart';
+import 'package:congniguard_admain/widgets/custom_app_button.dart';
+import 'package:congniguard_admain/widgets/function_nav.dart';
 import 'package:congniguard_admain/volunteer_register/volunteer_register.dart';
 import 'package:flutter/material.dart';
 

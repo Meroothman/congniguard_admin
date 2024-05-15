@@ -22,6 +22,17 @@ final class CreateMentorErrorState extends MentorRegisterStates {
 
   CreateMentorErrorState(this.error);
 }
+//! get doctors data
+
+final class GetMentorLoadingState extends MentorRegisterStates {}
+
+final class GetMentorSuccessState extends MentorRegisterStates {}
+
+final class GetMentorErrorState extends MentorRegisterStates {
+  final String error;
+
+  GetMentorErrorState(this.error);
+}
 
 //! image picker
 final class MentorProfileImagePickedSuccessState extends MentorRegisterStates {}
